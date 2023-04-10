@@ -18,6 +18,14 @@ export default banco.define("emprestimo", {
   },
   devolucao: {
     type: Sequelize.DATE,
+    allowNull: true,
+  },
+  idlivro: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  idpessoa: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
 });

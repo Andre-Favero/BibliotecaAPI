@@ -26,6 +26,10 @@ async function alterar(req, res) {
   await Emprestimo.update(
     {
       emprestimo: req.body.emprestimo,
+      vencimento: req.body.vencimento,
+      devolucao: req.body.devolucao,
+      idlivro: req.body.idlivro,
+      idpessoa: req.body.idpessoa,
     },
     {
       where: { idemprestimo: req.params.idemprestimo },
