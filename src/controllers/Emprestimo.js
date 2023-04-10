@@ -15,6 +15,8 @@ async function inserir(req, res) {
     emprestimo: req.body.emprestimo,
     vencimento: req.body.vencimento,
     devolucao: req.body.devolucao,
+    idlivro: req.body.idlivro,
+    idpessoa: req.body.idpessoa,
   })
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));

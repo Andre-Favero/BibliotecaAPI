@@ -14,6 +14,8 @@ async function selecionar(req, res) {
 async function inserir(req, res) {
   await Livroautor.create({
     livroautor: req.body.livroautor,
+    idlivro: req.body.idlivro,
+    idautor: req.body.idautor,
   })
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));
@@ -23,6 +25,8 @@ async function alterar(req, res) {
   await Livroautor.update(
     {
       livroautor: req.body.livroautor,
+      idlivro: req.body.idlivro,
+      idautor: req.body.idautor,
     },
     {
       where: { idlivroautor: req.params.idlivroautor },
