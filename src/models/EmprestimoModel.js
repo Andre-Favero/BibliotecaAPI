@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import banco from "../banco.js";
 
-export default banco.define("editora", {
+export default banco.define("emprestimo", {
   idemprestimo: {
     type: Sequelize.INTEGER,
     primaryKey: true,

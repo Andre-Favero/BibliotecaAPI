@@ -1,30 +1,32 @@
-import Emprestimo from "../models/CategoriaModel.js";
+import Emprestimo from "../models/EmprestimoModel.js";
 
 async function listar(req, res) {
-  const dados = await Categoria.findAll();
+  const dados = await Emprestimo.findAll();
   res.json(dados);
 }
 async function selecionar(req, res) {
-  await Categoria.findByPk(req.params.idcategoria)
+  await Emprestimo.findByPk(req.params.idemprestimo)
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));
 }
 
 async function inserir(req, res) {
-  await Categoria.create({
-    categoria: req.body.categoria,
+  await Emprestimo.create({
+    emprestimo: req.body.emprestimo,
+    vencimento: req.body.vencimento,
+    devolucao: req.body.devolucao,
   })
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));
 }
 
 async function alterar(req, res) {
-  await Categoria.update(
+  await Emprestimo.update(
     {
-      categoria: req.body.categoria,
+      emprestimo: req.body.emprestimo,
     },
     {
-      where: { idcategoria: req.params.idcategoria },
+      where: { idemprestimo: req.params.idemprestimo },
     }
   )
     .then((result) => res.json(result))
@@ -32,8 +34,8 @@ async function alterar(req, res) {
 }
 
 async function excluir(req, res) {
-  await Categoria.destroy({
-    where: { idcategoria: req.params.idcategoria },
+  await Emprestimo.destroy({
+    where: { idemprestimo: req.params.idemprestimo },
   })
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));

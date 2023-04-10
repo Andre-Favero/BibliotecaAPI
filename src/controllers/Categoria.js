@@ -1,4 +1,5 @@
 import Categoria from "../models/CategoriaModel.js";
+
 async function listar(req, res) {
   const dados = await Categoria.findAll();
   res.json(dados);
