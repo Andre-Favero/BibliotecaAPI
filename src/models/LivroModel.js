@@ -30,8 +30,10 @@ export default banco.define("livro", {
   },
   idcategoria: {
     type: Sequelize.INTEGER,
+    allowNull: false,
   },
   ideditora: {
     type: Sequelize.INTEGER,
+    allowNull: false,
   },
 });
