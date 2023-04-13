@@ -1,4 +1,6 @@
+import { where } from "sequelize";
 import Emprestimo from "../models/EmprestimoModel.js";
+import Livro from "../models/LivroModel.js";
 
 async function listar(req, res) {
   const dados = await Emprestimo.findAll();
@@ -11,13 +13,23 @@ async function selecionar(req, res) {
 }
 
 async function inserir(req, res) {
-  await Emprestimo.create({
-    emprestimo: req.body.emprestimo,
-    vencimento: req.body.vencimento,
-    devolucao: req.body.devolucao,
-    idlivro: req.body.idlivro,
-    idpessoa: req.body.idpessoa,
-  })
+  await Emprestimo.create(
+    {
+      emprestimo: req.body.emprestimo,
+      vencimento: req.body.vencimento,
+      devolucao: req.body.devolucao,
+      idlivro: req.body.idlivro,
+      idpessoa: req.body.idpessoa,
+    },
+    await Livro.update(
+      {
+        emprestado: true,
+      },
+      {
+        where: { idlivro: req.body.idlivro },
+      }
+    )
+  )
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));
 }
