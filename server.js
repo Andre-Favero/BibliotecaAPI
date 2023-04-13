@@ -7,6 +7,7 @@ import Emprestimo from "./src/controllers/Emprestimo.js";
 import Pessoa from "./src/controllers/Pessoa.js";
 import Livroautor from "./src/controllers/Livroautor.js";
 import Livro from "./src/controllers/Livro.js";
+import Funcionario from "./src/controllers/Funcionario.js";
 
 const PORT = 4000;
 const app = express();
@@ -36,6 +37,12 @@ app.get("/pessoa/:idpessoa", Pessoa.selecionar);
 app.post("/pessoa/", Pessoa.inserir);
 app.put("/pessoa/:idpessoa", Pessoa.alterar);
 app.delete("/pessoa/:idpessoa", Pessoa.excluir);
+
+app.get("/funcionario", Funcionario.listar);
+app.get("/funcionario/:idfuncionario", Funcionario.selecionar);
+app.post("/funcionario/", Funcionario.inserir);
+app.put("/funcionario/:idfuncionario", Funcionario.alterar);
+app.delete("/funcionario/:idfuncionario", Funcionario.excluir);
 
 app.get("/editora", Editora.listar);
 app.get("/editora/:ideditora", Editora.selecionar);
