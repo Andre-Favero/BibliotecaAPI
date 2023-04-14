@@ -59,6 +59,7 @@ app.put("/emprestimo/:idemprestimo", Emprestimo.alterar);
 app.delete("/emprestimo/:idemprestimo", Emprestimo.excluir);
 
 app.get("/livro", Livro.listar);
+app.get("/livro/categoria/:idcategoria", Livro.listarCategoria);
 app.get("/livro/:idlivro", Livro.selecionar);
 app.post("/livro/", Livro.inserir);
 app.put("/livro/:idlivro", Livro.alterar);

@@ -4,6 +4,13 @@ async function listar(req, res) {
   const dados = await Livro.findAll();
   res.json(dados);
 }
+
+async function listarCategoria(req, res) {
+  const dados = await Livro.findAll({
+    where: { idcategoria: req.params.idcategoria },
+  });
+  res.json(dados);
+}
 async function selecionar(req, res) {
   await Livro.findByPk(req.params.idlivro)
     .then((result) => res.json(result))
@@ -55,4 +62,11 @@ async function excluir(req, res) {
     .catch((err) => res.status(400).json(err));
 }
 
-export default { listar, selecionar, inserir, alterar, excluir };
+export default {
+  listar,
+  selecionar,
+  inserir,
+  alterar,
+  excluir,
+  listarCategoria,
+};
