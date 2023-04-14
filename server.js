@@ -51,7 +51,9 @@ app.put("/editora/:ideditora", Editora.alterar);
 app.delete("/editora/:ideditora", Editora.excluir);
 
 app.get("/emprestimo", Emprestimo.listar);
+app.get("/emprestimo/pendencia/devolucao", Emprestimo.pendencia);
 app.get("/emprestimo/:idemprestimo", Emprestimo.selecionar);
+app.get("/emprestimo/historico/devolucao/:idpessoa", Emprestimo.historico);
 app.post("/emprestimo/", Emprestimo.inserir);
 app.put("/emprestimo/:idemprestimo", Emprestimo.alterar);
 app.delete("/emprestimo/:idemprestimo", Emprestimo.excluir);

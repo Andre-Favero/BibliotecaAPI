@@ -12,6 +12,18 @@ async function selecionar(req, res) {
     .catch((err) => res.status(400).json(err));
 }
 
+async function pendencia(req, res) {
+  await Emprestimo.findAll({ where: { devolucao: null } })
+    .then((result) => res.json(result))
+    .catch((err) => res.status(400).json(err));
+}
+
+async function historico(req, res) {
+  await Emprestimo.findAll({ where: { idpessoa: req.params.idpessoa } })
+    .then((result) => res.json(result))
+    .catch((err) => res.status(400).json(err));
+}
+
 async function inserir(req, res) {
   await Emprestimo.create(
     {
@@ -30,11 +42,12 @@ async function inserir(req, res) {
       }
     )
   )
-    .then((result) => res.json(result))
+    .then((result) => res.json(result).console.log(result))
     .catch((err) => res.status(400).json(err));
 }
 
 async function alterar(req, res) {
+  const data = await Emprestimo.findByPk(req.params.idemprestimo);
   await Emprestimo.update(
     {
       emprestimo: req.body.emprestimo,
@@ -45,7 +58,15 @@ async function alterar(req, res) {
     },
     {
       where: { idemprestimo: req.params.idemprestimo },
-    }
+    },
+    await Livro.update(
+      {
+        emprestado: false,
+      },
+      {
+        where: { idlivro: data.idlivro },
+      }
+    )
   )
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));
@@ -59,4 +80,12 @@ async function excluir(req, res) {
     .catch((err) => res.status(400).json(err));
 }
 
-export default { listar, selecionar, inserir, alterar, excluir };
+export default {
+  listar,
+  selecionar,
+  inserir,
+  alterar,
+  excluir,
+  pendencia,
+  historico,
+};
